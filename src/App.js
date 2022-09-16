@@ -1,66 +1,45 @@
 
 import './App.css';
-// import Hero from './components/Hero/Hero';
-import Login from './components/Login/Login.js';
-import Profile from './components/Login/Profile';
-import HeroErrorBoundries from './errorboundries/HeroErrorBoundries';
+
+import AuthContext from './components/contex/AuthContext';
+import ErrorBox from './components/ErrorBoundries/ErrorBox';
 import {useState} from "react"
-import {userContext} from "./components/contex/contextlogin.js"
+import ColorThemeComponents from './components/ColorTheme/ColorThemComponets';
+import Counter from './components/useReducer/Counter';
+
 
 function App() {
 
+ const[next,setNext] = useState(1);
 
-  const [showprofile , setShowprofile] =useState(false);
-  const [username , setUserName] = useState('');
+ function NextPage(){
+    setNext(Number(next)+1);
+ }
+ function PrevPage(){
+    setNext(Number(next)-1);
+ }
+ function firstPage(){
+    setNext(1);
+ }
+ 
+ 
 
   return (
-   
-      <>
-
-  
-{/* 
-    <div className="Error-boundries">
-
+   <>
+      <div>
+     {next===1 ? <ErrorBox /> : ""}
+     {next===2 ? <AuthContext /> : "" }
+     {next===3  ? <ColorThemeComponents/> : "" } 
+     {next===4 ? <Counter/> : ""}
      
-     <HeroErrorBoundries >
-    <Hero heroname="spidermann" />
-    </HeroErrorBoundries>
-    
-    <HeroErrorBoundries >
-    <Hero heroname="Ironman" />
-    </HeroErrorBoundries>
-    
-    <HeroErrorBoundries >
-    <Hero heroname="Batman" />
-    </HeroErrorBoundries>
-    
-    <HeroErrorBoundries >
-    <Hero heroname="joker" />
-    </HeroErrorBoundries>
-    
-    <HeroErrorBoundries >
-    <Hero heroname="superman" />
-    </HeroErrorBoundries>        
-        
-
-    </div>  */}
-
-    
-    
-   <div className="login-main">
-   
-       
-
-    < userContext.Provider value={{setShowprofile , setUserName}}>
-    { showprofile ? < Profile  username={username}/> : < Login showprofile={showprofile}/> }
+     
       
-    </userContext.Provider>
-     
-
-    <div/>
-
-  
-   </div>
+    </div>
+     <div className='btn'>
+     <button onClick={NextPage} > Next Page </button>
+     <button onClick={PrevPage} > Prev Page </button>
+     <button onClick={firstPage} > First Page </button>
+    </div>
    </>
   )
 }

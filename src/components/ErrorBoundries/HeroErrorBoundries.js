@@ -1,5 +1,5 @@
 import React from "react";
-import "../components/Hero/Hero.css"
+import "./Hero/Hero.css"
 class HeroErrorBoundries extends React.Component {
       
     constructor(props){

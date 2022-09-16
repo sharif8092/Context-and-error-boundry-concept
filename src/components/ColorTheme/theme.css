@@ -1,0 +1,8 @@
+.color-theme-container{
+    text-align: center;
+}
+
+.color-theme-container {
+    display: flex;
+    justify-content: center;
+}
